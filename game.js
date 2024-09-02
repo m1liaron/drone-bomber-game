@@ -110,7 +110,23 @@ window.addEventListener('DOMContentLoaded', () => {
             this.timer = 0;
             this.interval = 1000/this.fps;
 
+            // Background 
+            this.background = new Image();
+            this.background.src= 'assets/images/background/background.jpg';
+            this.bgX = 0;
+            this.bgSpeed = 4;
+
             this.start();
+        }
+
+        drawBackground() {
+            this.context.drawImage(this.background, this.bgX, 0, this.width, this.height);
+            this.context.drawImage(this.background, this.bgX + this.width, 0, this.width, this.height );
+        }
+
+        updateBackground() {
+            this.bgX -= this.bgSpeed; 
+            if(this.bgX <= -this.width) this.bgX = 0;
         }
 
         start() {
@@ -129,8 +145,13 @@ window.addEventListener('DOMContentLoaded', () => {
 
             if (this.timer > this.interval) {
                 this.context.clearRect(0, 0, this.width, this.height);
+                
+                this.updateBackground();
+                this.drawBackground();
+
                 this.player.update();
                 this.player.draw(this.context);
+
                 this.timer = 0;
             } else {
                 this.timer += deltaTime;
