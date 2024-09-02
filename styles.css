@@ -1,0 +1,19 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Freeman", sans-serif;
+}
+
+#game{
+    background:url('assets/images/background/background.jpg');
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    background-size: cover;
+}
+
+#drone {
+    display: none;
+}
